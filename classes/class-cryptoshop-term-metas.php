@@ -1,6 +1,4 @@
 <?php
-require('class-term-db-infos.php');
-require('class-cryptoshop-image.php');
 
 class CryptoShopTermMetas {
     public string $type; // TODO: search for precise type 'color' | 'photo'
@@ -8,7 +6,11 @@ class CryptoShopTermMetas {
     public $image; // In reality "string" | CryptoShopImage
 
     public function __construct(int $term_id, $parent_attribute_name) {
+        require_once('class-term-db-infos.php');
+        require_once('class-cryptoshop-image.php');
+
         $db_term_metas = $this->get_db_term_metas($term_id);
+
         $this->assign_metas_infos($db_term_metas, $parent_attribute_name);
         $this->get_image_infos_if_necessary();
     }

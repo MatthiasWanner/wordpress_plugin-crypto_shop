@@ -1,6 +1,4 @@
 <?php
- require('class-attribute-db-infos.php');
- require ('class-cryptoshop-attribute-term.php');
 
 class CryptoShopAttribute {
 
@@ -11,6 +9,9 @@ class CryptoShopAttribute {
     
     public function __construct(int $attribute_id, ?array $options)
     {
+        require_once('class-attribute-db-infos.php');
+        require_once('class-cryptoshop-attribute-term.php');
+
         $wc_attribute_taxonomy = new AttributeDbInfos($attribute_id);
         $this->id = $wc_attribute_taxonomy->id;
         $this->name = $wc_attribute_taxonomy->name;

@@ -1,5 +1,4 @@
 <?php
-require('class-cryptoshop-term-metas.php');
 
 class CryptoShopAttributeTerm {
     public int $id;
@@ -8,6 +7,9 @@ class CryptoShopAttributeTerm {
     public CryptoShopTermMetas $metas;
 
     public function __construct($db_term_infos, string $parent_attribute_name) {
+
+        require_once('class-cryptoshop-term-metas.php');
+
         $this->id = $db_term_infos->term_id;
         $this->name = $db_term_infos->name;
         $this->slug = $db_term_infos->slug;
