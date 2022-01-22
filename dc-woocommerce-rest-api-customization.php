@@ -29,6 +29,7 @@ function convert_db_term_into_object($attribute_term, $attribute_name) {
                 break;
             case ($term_meta_from_db->meta_key == "pa_{$attribute_name}_swatches_id_photo"):
                 $imageId = $term_meta_from_db->meta_value;
+                $term_metas->image = $imageId;
                 break;
             default:
                 break;
@@ -88,7 +89,7 @@ function get_attribute_terms($attribute_name, $filter) {
     
     $attribute_terms = array_map(fn($arr) => convert_db_term_into_object($arr, $attribute_name), $wc_attribute_terms_from_db);
     
-    return $attribute_terms;
+    return array_values($attribute_terms);
 };
 
 function get_attribute_infos($attribute) {
