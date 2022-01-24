@@ -1,9 +1,9 @@
 <?php
 
 class CryptoShopTermMetas {
-    public string $type; // TODO: search for precise type 'color' | 'photo'
-    public string $color;
-    public $image; // In reality "string" | CryptoShopImage
+    public ?string $type = null; // TODO: search for precise type 'color' | 'photo'
+    public ?string $color = null;
+    public $image = null; // In reality "string" | CryptoShopImage
 
     public function __construct(int $term_id, $parent_attribute_name) {
         require_once('class-term-db-infos.php');
