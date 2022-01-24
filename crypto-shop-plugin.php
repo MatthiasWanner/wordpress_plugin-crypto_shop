@@ -1,7 +1,7 @@
 <?php /* 
-Plugin Name: Digital Copilote Woocommerce REST API Customization
+Plugin Name: Crypto Shop by DC
 Plugin URI:  
-Description: Woocommerce REST API response customization
+Description: Woocommerce Customization for Crypto Shop
 Version: 1.0 
 Author: Matthias Wanner
 Author URI: https://github.com/MatthiasWanner
