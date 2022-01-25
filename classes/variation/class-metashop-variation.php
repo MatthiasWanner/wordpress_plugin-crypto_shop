@@ -13,7 +13,7 @@ class MetaShopVariation {
         $main_image_id = $this->data['image']['id'];
 
         if($main_image_id) {
-            array_push($images, new VariationImage($main_image_id));
+            array_push($images, new VariationImage($main_image_id, 1));
         }
 
         [$strg_additionnal_image_ids] = get_post_meta($this->data['id'], '_wc_additional_variation_images');
@@ -21,8 +21,8 @@ class MetaShopVariation {
         if(!empty($strg_additionnal_image_ids)){
             $additionnal_image_ids = explode(',', $strg_additionnal_image_ids);
 
-            foreach ($additionnal_image_ids as $image_id){
-                array_push($images, new VariationImage($image_id));
+            foreach ($additionnal_image_ids as $key=>$image_id){
+                array_push($images, new VariationImage($image_id, $key + 2));
             }
         }
 
