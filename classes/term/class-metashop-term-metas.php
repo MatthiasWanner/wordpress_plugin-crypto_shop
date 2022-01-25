@@ -1,13 +1,13 @@
 <?php
 
-class CryptoShopTermMetas {
+class MetaShopTermMetas {
     public ?string $type = null; // TODO: search for precise type 'color' | 'photo'
     public ?string $color = null;
     public $image = null; // In reality "string" | CryptoShopImage
 
     public function __construct(int $term_id, $parent_attribute_name) {
-        require_once('class-term-db-infos.php');
-        require_once('class-cryptoshop-image.php');
+        require_once plugin_dir_path( __FILE__ ).'/class-term-db-infos.php';
+        require_once plugin_dir_path( __FILE__ ).'../image/class-metashop-image.php';
 
         $db_term_metas = $this->get_db_term_metas($term_id);
 
@@ -47,7 +47,7 @@ class CryptoShopTermMetas {
 
     private function get_image_infos_if_necessary() {
         if ($this->type == 'photo') {
-            $image_infos = new CryptoShopImage($this->image);
+            $image_infos = new MetaShopImage($this->image);
             $this->image = $image_infos;   
         } 
     }

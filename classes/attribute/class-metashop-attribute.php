@@ -1,6 +1,6 @@
 <?php
 
-class CryptoShopAttribute {
+class MetaShopAttribute {
 
     public int $id;
     public string $name;
@@ -9,8 +9,8 @@ class CryptoShopAttribute {
     
     public function __construct(int $attribute_id, ?array $options)
     {
-        require_once('class-attribute-db-infos.php');
-        require_once('class-cryptoshop-attribute-term.php');
+        require_once plugin_dir_path( __FILE__ ).'/class-attribute-db-infos.php';
+        require_once plugin_dir_path( __FILE__ ).'../term/class-metashop-attribute-term.php';
 
         $wc_attribute_taxonomy = new AttributeDbInfos($attribute_id);
         $this->id = $wc_attribute_taxonomy->id;
@@ -53,6 +53,6 @@ class CryptoShopAttribute {
                                         : 
                                         $this->get_terms_from_db();
         
-        return array_values(array_map(fn($term) => new CryptoShopAttributeTerm($term, $this->name), $wc_attribute_terms_from_db));
+        return array_values(array_map(fn($term) => new MetaShopAttributeTerm($term, $this->name), $wc_attribute_terms_from_db));
     }
 }

@@ -1,5 +1,5 @@
 <?php
-class CryptoShopImage {
+class MetaShopImage {
     public string $id;
     public string $url;
     public string $name;
