@@ -1,5 +1,5 @@
 <?php
-class MetaShopImage {
+class MetaShopTermImage {
     public string $id;
     public string $url;
     public string $name;

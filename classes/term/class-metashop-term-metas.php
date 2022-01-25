@@ -7,7 +7,7 @@ class MetaShopTermMetas {
 
     public function __construct(int $term_id, $parent_attribute_name) {
         require_once plugin_dir_path( __FILE__ ).'/class-term-db-infos.php';
-        require_once plugin_dir_path( __FILE__ ).'../image/class-metashop-image.php';
+        require_once plugin_dir_path( __FILE__ ).'../image/class-metashop-term-image.php';
 
         $db_term_metas = $this->get_db_term_metas($term_id);
 
@@ -47,7 +47,7 @@ class MetaShopTermMetas {
 
     private function get_image_infos_if_necessary() {
         if ($this->type == 'photo') {
-            $image_infos = new MetaShopImage($this->image);
+            $image_infos = new MetaShopTermImage($this->image);
             $this->image = $image_infos;   
         } 
     }
