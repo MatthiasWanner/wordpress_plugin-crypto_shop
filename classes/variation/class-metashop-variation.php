@@ -25,7 +25,16 @@ class MetaShopVariation {
                 array_push($images, new VariationImage($image_id, $key + 2));
             }
         }
-
         return $images;
+    }
+
+    public function get_thumbnail() {
+        $main_variation_image_id = $this->data['image']['id'];
+
+        if($main_variation_image_id) {
+            $main_variation_image = new VariationImage($main_variation_image_id);
+            $main_variation_image->get_thumbnail();
+        }
+        return $main_variation_image;
     }
 }

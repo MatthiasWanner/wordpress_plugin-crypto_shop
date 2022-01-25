@@ -26,6 +26,8 @@ class MetaShopPlugin {
         $new_variation = new MetaShopVariation($response->data);
 
         $response->data['images'] = $new_variation->get_variation_images();
+        
+        $response->data['thumbnail'] = $new_variation->get_thumbnail();
       
         unset($response->data['image']);
         return $response;

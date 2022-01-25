@@ -20,4 +20,12 @@ class ProductImage {
         $this->src = $medias_infos->guid;
         $this->name = $medias_infos->post_name;
     }
+
+    public function get_thumbnail_html() {
+        return wp_get_attachment_image($this->id, 'woocommerce_thumbnail');
+    }
+
+    public function get_thumbnail() {
+        $this->src = wp_get_attachment_image_url($this->id, 'woocommerce_thumbnail');
+    }
 }
