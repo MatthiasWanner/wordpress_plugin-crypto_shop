@@ -4,7 +4,16 @@ class MetaShopProduct {
     private $original_response;
 
     public function __construct($original_response) {
+        require_once plugin_dir_path( __FILE__ ).'../attribute/class-metashop-attribute.php';
         $this->original_response = $original_response;
+    }
+
+    public function get_custom_options() {
+        if ($this->original_response['type'] === "variable") {
+            return $new_attributes = array_map(fn($att) => new MetaShopAttribute($att['id'], $att['options']), $this->original_response['attributes']);
+        } else {
+            return null;
+        }
     }
 
     public function get_short_description() {
