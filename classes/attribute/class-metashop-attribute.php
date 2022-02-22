@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class MetaShopAttribute.
+ * 
+ * Provide product attribute infos with related terms and metas
+ */
 class MetaShopAttribute {
 
     public int $id;
@@ -7,6 +12,11 @@ class MetaShopAttribute {
     public string $label;
     public array $terms; // have to type in array of term objects
     
+    /**
+     * MetaShopAttribute constructor
+     * @param int $attribute_id
+     * @param array $options to filter results according to product options
+     */
     public function __construct(int $attribute_id, ?array $options)
     {
         require_once plugin_dir_path( __FILE__ ).'/class-attribute-db-infos.php';
@@ -19,6 +29,11 @@ class MetaShopAttribute {
         $this->terms = $this->get_terms($options);
     }
 
+    /**
+     * Method to retrieve attribute's terms ids from the database
+     * 
+     * @return array of numbers
+     */
     private function get_term_ids() {
         global $wpdb;
         $pa_taxonomy = "pa_{$this->name}";
@@ -33,6 +48,11 @@ class MetaShopAttribute {
         return array_map(fn($result) => $result->term_id, $wc_attribute_terms_ids_from_db);
     }
 
+    /**
+     * Method to retrieve terms infos from db
+     * 
+     * @return array of term objects
+     */
     private function get_terms_from_db() {
         $strg_terms_ids = implode(",", $this->get_term_ids());
         global $wpdb;
@@ -46,6 +66,11 @@ class MetaShopAttribute {
         return $wc_attribute_terms_from_db;
     }
 
+    /**
+     * Method to get formated attribute terms
+     * 
+     * @return array of MetaShopAttributeTerm objects
+     */
     public function get_terms(?array $filter_options) {
         
         $wc_attribute_terms_from_db = !empty($filter_options) ? 
