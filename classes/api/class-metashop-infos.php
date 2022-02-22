@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Class instancied on /wc/v3/metashop-infos API endpoint
+ * Used by MetaShopPlugin->get_shop_infos() method
+ * @author Digital Copilote
+ */
 class MetashopInfos {
     public string $shop_name;
     public string $shop_description;
@@ -16,6 +22,11 @@ class MetashopInfos {
         $this->shop_url = get_bloginfo('url');
     }
 
+    /**
+     * Method To get the site logo url directly
+     *
+     * @return string site logo's url
+     */
     private function get_site_logo_url() {
         $custom_logo_id = get_theme_mod( 'custom_logo' );
         $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
