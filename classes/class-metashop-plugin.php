@@ -3,8 +3,15 @@ class MetaShopPlugin {
     public function __construct() {
         require_once plugin_dir_path( __FILE__ ).'product/class-metashop-product.php';
         require_once plugin_dir_path( __FILE__ ).'variation/class-metashop-variation.php';
+        require_once plugin_dir_path( __FILE__ ).'api/class-metashop-infos.php';
         add_filter('woocommerce_rest_prepare_product_object', array($this, 'get_custom_product_properties'), 10, 3);
         add_filter('woocommerce_rest_prepare_product_variation_object', array($this, 'get_custom_variations_properties'), 10, 3);
+        add_action( 'rest_api_init', function () {
+            register_rest_route( 'wc/v3', 'infos', array(
+                'methods' => 'GET',
+                'callback' => array($this, 'get_shop_infos'),
+            ));
+        });
     }
 
     public function get_custom_product_properties($response, $request){
@@ -27,5 +34,9 @@ class MetaShopPlugin {
       
         unset($response->data['image']);
         return $response;
+    }
+
+    public function get_shop_infos() {
+        return new MetashopInfos();
     }
 }
