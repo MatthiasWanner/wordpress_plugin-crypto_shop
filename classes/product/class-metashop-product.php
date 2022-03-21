@@ -6,6 +6,8 @@
  */
 class MetaShopProduct {
     private $original_response;
+    public $min_price;
+    public $max_price;
 
     /**
      * MetaShopProduct constructor.
@@ -14,6 +16,12 @@ class MetaShopProduct {
     public function __construct($original_response) {
         require_once plugin_dir_path( __FILE__ ).'../attribute/class-metashop-attribute.php';
         $this->original_response = $original_response;
+
+        if($original_response['type'] == 'variable') {
+            $product = wc_get_product($original_response['id']);
+            $this->min_price = $product->get_variation_price();
+            $this->max_price = $product->get_variation_price('max');
+        }
     }
 
     /**
