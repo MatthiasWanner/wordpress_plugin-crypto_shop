@@ -30,6 +30,8 @@ class MetaShopPlugin {
 
         $response->data['custom_options'] = $new_product->get_custom_options();
         $response->data['short_description'] = $new_product->get_short_description();
+        $response->data['min_price'] = $new_product->min_price;
+        $response->data['max_price'] = $new_product->max_price;
     
         return $response;
     }
