@@ -9,7 +9,7 @@ class MetaShopAttribute {
 
     public int $id;
     public string $name;
-    public string $label;
+    public $label;
     public array $terms; // have to type in array of term objects
     
     /**

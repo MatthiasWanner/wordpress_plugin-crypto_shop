@@ -8,7 +8,7 @@
 class AttributeDbInfos {
     public int $id;
     public string $name;
-    public string $label;
+    public $label;
 
     /**
      * AttributeDbInfos constructor
